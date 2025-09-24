@@ -3,6 +3,7 @@ package rewards;
 import common.money.MonetaryAmount;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 // - Run the test, it should now pass.
 // - Think about where auto-configuration is enabled for the test.
 // Replace me
-@SpringJUnitConfig(classes = {SystemTestConfig.class})
+@SpringBootTest
 class RewardNetworkTests {
 
     /**
