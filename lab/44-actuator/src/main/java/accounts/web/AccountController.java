@@ -2,8 +2,12 @@ package accounts.web;
 
 import accounts.AccountManager;
 import common.money.Percentage;
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,13 +38,17 @@ public class AccountController {
 
 	private final AccountManager accountManager;
 
+	private Counter counter;
+
 	// TODO-08: Add a Micrometer Counter
 	// - Inject a MeterRegistry through constructor injection
 	//   (Modify the existing constructor below)
 	// - Create a Counter from the MeterRegistry: name the counter "account.fetch"
 	//   with a tag of "type"/"fromCode" key/value pair
-	public AccountController(AccountManager accountManager) {
+	@Autowired
+	public AccountController(AccountManager accountManager, MeterRegistry registry) {
 		this.accountManager = accountManager;
+		counter = registry.counter("account.fetch", "type", "fromCode");
 	}
 
 	/**
@@ -54,7 +62,9 @@ public class AccountController {
 	 * - Add the property to enable scanning of the @Timed annotation in the application.properties
 	 */
 	@GetMapping(value = "/accounts")
+	@Timed(value="account.timer", extraTags = {"source", "accountSummary"})
 	public List<Account> accountSummary() {
+		logger.debug("Logging message within accountSummary()");
 		return accountManager.getAllAccounts();
 	}
 
@@ -71,8 +81,9 @@ public class AccountController {
      *  - Set extra tag with "source"/"accountDetails" key/value pair
 	 */
 	@GetMapping(value = "/accounts/{id}")
+	@Timed(value="account.timer", extraTags = {"source", "accountDetails"})
 	public Account accountDetails(@PathVariable int id) {
-
+		counter.increment();
 		return retrieveAccount(id);
 	}
 
