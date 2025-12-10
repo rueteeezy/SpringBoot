@@ -18,15 +18,30 @@ This repository includes essential Spring components such as controllers, servic
 
 ## 📁 Project Structure
 
-```text
 SpringBoot/
-├── src/
-│   ├── main/
-│   │   ├── java/com/example/...
-│   │   └── resources/
-│   │       ├── application.properties
-│   └── test/
+├── 00-rewards-common/
+├── 01-rewards-db/
+├── 10-spring-intro/
+├── 12-javaconfig-dependency-injection/
+├── 16-annotations/
+├── 22-aop/
+├── 24-test/
+├── 26-jdbc/
+├── 28-transactions/
+├── 30-jdbc-boot/
+├── 32-jdbc-autoconfig/
+├── 33-autoconfig-helloworld/
+├── 34-spring-data-jpa/
+├── 36-mvc/
+├── 38-rest-ws/
+├── 40-boot-test/
+├── 42-security-rest/
+├── 44-actuator/
+├── temp/
 ├── pom.xml
+├── mvnw
+├── mvnw.cmd
+├── .gitignore
 └── README.md
 ```
 
