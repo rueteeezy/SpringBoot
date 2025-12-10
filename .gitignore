@@ -21,7 +21,10 @@ target/
 *.iml
 *.ipr
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 55b7cefbf3c1de2157ec78577c39052239e357b2
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -40,5 +43,8 @@ build/
 ._.DS_Store
 **/.DS_Store
 **/._.DS_Store
+<<<<<<< HEAD
 
 .mvn/
+=======
+>>>>>>> 55b7cefbf3c1de2157ec78577c39052239e357b2
